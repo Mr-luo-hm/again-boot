@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>again-boot-starter-elasticsearch</module>
+        <module>again-boot-starter-kafka</module>
     </modules>
-
-
 </project>
