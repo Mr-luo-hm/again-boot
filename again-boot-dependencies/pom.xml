@@ -28,6 +28,7 @@
         <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
         <grpc.version>2.11.0.RELEASE</grpc.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <!--starters-->
@@ -36,11 +37,28 @@
                 <artifactId>again-boot-starter-elasticsearch</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.again</groupId>
+                <artifactId>again-boot-starter-kafka</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.again</groupId>
+                <artifactId>again-boot-starter-storage</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+           <!-- oss sdk-->
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${oss.aliyun.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
