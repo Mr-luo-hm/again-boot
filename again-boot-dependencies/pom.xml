@@ -47,6 +47,11 @@
                 <artifactId>again-boot-starter-storage</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.again</groupId>
+                <artifactId>again-boot-starter-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
 
             <dependency>
