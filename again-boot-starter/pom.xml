@@ -15,5 +15,6 @@
         <module>again-boot-starter-elasticsearch</module>
         <module>again-boot-starter-kafka</module>
         <module>again-boot-starter-storage</module>
+        <module>again-boot-starter-redis</module>
     </modules>
 </project>
