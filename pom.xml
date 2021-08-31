@@ -10,6 +10,7 @@
     <modules>
         <module>again-boot-dependencies</module>
         <module>again-boot-starter</module>
+        <module>again-boot-extends</module>
     </modules>
 
     <packaging>pom</packaging>
