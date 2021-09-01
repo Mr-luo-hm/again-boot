@@ -11,6 +11,8 @@
         <module>again-boot-dependencies</module>
         <module>again-boot-starter</module>
         <module>again-boot-extends</module>
+        <module>again-boot-example</module>
+        <module>again-biz-modules</module>
     </modules>
 
     <packaging>pom</packaging>
