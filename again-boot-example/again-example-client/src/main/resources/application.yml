@@ -1,0 +1,14 @@
+server:
+  port: 10001
+grpc:
+  server:
+    port: 20002
+  client:
+    again-example-grpc-server:
+      address: 'static://127.0.0.1:20001'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
+spring:
+  application:
+    name: again-example-grpc-client
