@@ -1,0 +1,50 @@
+package com.again.extend.mybatis.mysql.methods;
+
+import com.again.extend.mybatis.config.StaticConfig;
+import com.baomidou.mybatisplus.core.metadata.TableInfo;
+
+/**
+ * @author create by 罗英杰 on 2021/9/4
+ * @description:
+ */
+public class InsertOrUpdateByBatch extends BaseInsertBatch {
+
+	@Override
+	protected String getSql() {
+		return "<script>insert into %s %s values %s</script>";
+	}
+
+	@Override
+	protected String getId() {
+		return "insertOrUpdateByBatch";
+	}
+
+	@Override
+	protected String prepareValuesSqlForMysqlBatch(TableInfo tableInfo) {
+		StringBuilder sql = super.prepareValuesBuildSqlForMysqlBatch(tableInfo);
+		sql.append(" ON DUPLICATE KEY UPDATE ");
+		StringBuilder ignore = new StringBuilder();
+
+		tableInfo.getFieldList().forEach(field -> {
+			// 默认忽略逻辑删除字段
+			if (!field.isLogicDelete()) {
+				// 默认忽略字段
+				if (!StaticConfig.UPDATE_IGNORE_FIELDS.contains(field.getProperty())) {
+					sql.append(field.getColumn()).append("=").append("VALUES(").append(field.getColumn()).append("),");
+				}
+				else {
+					ignore.append(",").append(field.getColumn()).append("=").append("VALUES(").append(field.getColumn())
+							.append(")");
+				}
+			}
+		});
+
+		// 删除最后一个多余的逗号
+		sql.delete(sql.length() - 1, sql.length());
+
+		// 配置不忽略全局配置字段时的sql部分
+		sql.append("<if test=\"!ignore\">").append(ignore).append("</if>");
+		return sql.toString();
+	}
+
+}

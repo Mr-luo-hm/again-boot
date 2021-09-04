@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>again-boot-mybatis-plus</module>
+        <module>again-boot-mybatis-plus-mysql</module>
     </modules>
 
 
