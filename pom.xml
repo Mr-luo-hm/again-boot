@@ -13,6 +13,7 @@
         <module>again-boot-extends</module>
         <module>again-boot-example</module>
         <module>again-biz-modules</module>
+        <module>again-boot-web</module>
     </modules>
 
     <packaging>pom</packaging>
