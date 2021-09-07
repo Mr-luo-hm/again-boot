@@ -118,6 +118,13 @@
                 <artifactId>again-example-grpc</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.again</groupId>
+                <artifactId>again-example-security-modules</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+
 
             <!--grpc-->
             <dependency>
