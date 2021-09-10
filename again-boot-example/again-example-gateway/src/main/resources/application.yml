@@ -1,0 +1,57 @@
+server:
+  port: 20001
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @profiles.active@  # 当前激活配置，默认dev
+  cloud:
+    gateway:
+      routes:
+        - id: again-example-casual
+          uri: lb://AGAIN-EXAMPLE-CASUAL #服务
+          predicates:
+            - Path=/foo/**  #匹配
+          filters:
+            #- StripPrefix=1
+            #- name: Hystrix
+            #  args:
+            #    name: fallbackCmdA
+            #    fallbackUri: forward:/fallbackA
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@userKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 3
+            - RewritePath=/filter/(?<segment>.*), /provider/$\{segment}
+            - Check
+      globalcors: #统一配置跨域请求
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+            allowed-methods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - OPTION
+    sentinel:
+      transport:
+        dashboard: localhost:8880
+        port: 8880
+  hystrix.command.fallbackCmdA.execution.isolation.thread.timeoutInMilliseconds: 5000
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:20000/eureka/
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+
