@@ -37,10 +37,6 @@ spring:
               - DELETE
               - PUT
               - OPTION
-    sentinel:
-      transport:
-        dashboard: localhost:8880
-        port: 8880
   hystrix.command.fallbackCmdA.execution.isolation.thread.timeoutInMilliseconds: 5000
 eureka:
   instance:
