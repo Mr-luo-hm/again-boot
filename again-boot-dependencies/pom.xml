@@ -28,6 +28,7 @@
         <kafka.version>2.5.0</kafka.version>
         <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
         <grpc.version>2.11.0.RELEASE</grpc.version>
+        <guava-retrying.version>2.0.0</guava-retrying.version>
     </properties>
 
     <dependencyManagement>
@@ -141,6 +142,18 @@
                 <groupId>net.devh</groupId>
                 <artifactId>grpc-server-spring-boot-starter</artifactId>
                 <version>${grpc.version}</version>
+            </dependency>
+
+           <!-- common-->
+            <dependency>
+                <groupId>com.again</groupId>
+                <artifactId>again-example-utils</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.rholder</groupId>
+                <artifactId>guava-retrying</artifactId>
+                <version>${guava-retrying.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
