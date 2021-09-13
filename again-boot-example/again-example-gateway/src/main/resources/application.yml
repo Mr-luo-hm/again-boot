@@ -26,9 +26,15 @@ spring:
             - RewritePath=/filter/(?<segment>.*), /provider/$\{segment}
             - Check
         - id: again-example-socket #websocket
-          uri: ws://localhost:30015 #服务
+          uri: lb:ws://again-example-socket #服务
           predicates:
             - Path=/websocket/**  #匹配
+          filters:
+          - StripPrefix=1
+          - name: Hystrix
+            args:
+              name: fallbackCmdA
+              fallbackUri: forward:/fallbackA
       globalcors: #统一配置跨域请求
         cors-configurations:
           '[/**]':
