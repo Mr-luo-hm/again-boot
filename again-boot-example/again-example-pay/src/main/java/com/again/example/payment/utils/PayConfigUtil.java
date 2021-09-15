@@ -27,9 +27,9 @@ public class PayConfigUtil {
 	public static String UFDOOER_URL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 
 	/**
-	 * 回调地址,用于接收微信告诉我们的支付结果
+	 * 回调地址,用于接收微信告诉我们的支付结果 外网地址 否则会一直 不成功会一直回调
 	 */
-	public static String NOTIFY_URL = "http://tomcat01.qfjava.cn:81/paycenter/payresult/result";
+	public static String NOTIFY_URL = "http://xx.xx.xx.xx:81/paycenter/payresult/result";
 
 	/**
 	 * 发起请求的地址,可以写我们的服务器地址,也可以传递客户的 ip
