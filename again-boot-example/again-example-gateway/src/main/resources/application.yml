@@ -35,6 +35,10 @@ spring:
             args:
               name: fallbackCmdA
               fallbackUri: forward:/fallbackA
+        - id: again-example-pay #支付模块
+          uri: lb://again-example-pay
+          predicates:
+            - Path=/pay/**
       globalcors: #统一配置跨域请求
         cors-configurations:
           '[/**]':

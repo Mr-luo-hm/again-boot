@@ -19,6 +19,7 @@
         <module>again-example-casual</module>
         <module>again-example-socket</module>
         <module>again-example-common</module>
+        <module>again-example-pay</module>
     </modules>
 
 

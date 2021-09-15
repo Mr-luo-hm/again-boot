@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: @artifactId@
+  rabbitmq:
+    host: 192.168.1.175
+    port: 5672
+eureka:
+  instance:
+    prefer-ip-address: true #当我们在eureka中点击服务的地址的时候打开的是以ip开头的
+  client:
+    service-url:
+      defaultZone: http://localhost:20000/eureka
+server:
+  port: 30004
+  servlet:
+    context-path: "/pay"
