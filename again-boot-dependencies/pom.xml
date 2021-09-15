@@ -151,10 +151,16 @@
                 <version>${revision}</version>
             </dependency>
             <dependency>
+                <groupId>com.again</groupId>
+                <artifactId>again-example-beans</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.github.rholder</groupId>
                 <artifactId>guava-retrying</artifactId>
                 <version>${guava-retrying.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>

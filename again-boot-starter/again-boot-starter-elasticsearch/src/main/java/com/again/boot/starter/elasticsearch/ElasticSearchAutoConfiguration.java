@@ -25,17 +25,15 @@ public class ElasticSearchAutoConfiguration {
 	@Bean
 	private RestHighLevelClient getClient(ElasticSearchProperties properties) {
 
-		return new RestHighLevelClient(RestClient
-				.builder(new HttpHost(properties.getHost(), properties.getPort(), TYPE),
-						new HttpHost(properties.getHost(), properties.getPort1(), TYPE),
-						new HttpHost(properties.getHost(), properties.getPort2(), TYPE))
-				.setHttpClientConfigCallback(httpClientBuilder -> {
-					httpClientBuilder.disableAuthCaching();
-					CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-					credentialsProvider.setCredentials(AuthScope.ANY,
-							new UsernamePasswordCredentials(properties.getUserName(), properties.getPassword()));
-					return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
-				}));
+		return new RestHighLevelClient(
+				RestClient.builder(new HttpHost(properties.getHost(), properties.getPort(), TYPE))
+						.setHttpClientConfigCallback(httpClientBuilder -> {
+							httpClientBuilder.disableAuthCaching();
+							CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+							credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(
+									properties.getUserName(), properties.getPassword()));
+							return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+						}));
 	}
 
 }

@@ -20,6 +20,7 @@
         <module>again-example-socket</module>
         <module>again-example-common</module>
         <module>again-example-pay</module>
+        <module>again-example-logs</module>
     </modules>
 
 

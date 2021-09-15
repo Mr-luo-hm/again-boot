@@ -1,11 +1,13 @@
 package com.again.example.gateway;
 
+import com.again.example.gateway.mq.SendLogStream;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import reactor.core.publisher.Mono;
@@ -18,6 +20,7 @@ import java.util.Objects;
  */
 @SpringBootApplication
 @EnableEurekaClient
+@EnableBinding({ SendLogStream.class })
 public class GateWayStartApplication {
 
 	public static void main(String[] args) {
