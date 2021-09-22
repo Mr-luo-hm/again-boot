@@ -16,9 +16,9 @@ public class MD5Util {
 	 * @return
 	 */
 	private static String byteArrayToHexString(byte b[]) {
-		StringBuffer resultSb = new StringBuffer();
-		for (int i = 0; i < b.length; i++) {
-			resultSb.append(byteToHexString(b[i]));
+		StringBuilder resultSb = new StringBuilder();
+		for (byte value : b) {
+			resultSb.append(byteToHexString(value));
 		}
 		return resultSb.toString();
 	}
@@ -56,15 +56,15 @@ public class MD5Util {
 				resultString = byteArrayToHexString(md.digest(resultString.getBytes(charsetName)));
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception ignored) {
 		}
 		return resultString;
 	}
 
-	private static final String HEX_DIGITS[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
+	private static final String[] HEX_DIGITS = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
 			"e", "f" };
 
-	public static String UrlEncode(String src) throws UnsupportedEncodingException {
+	public static String urlEncode(String src) throws UnsupportedEncodingException {
 		return URLEncoder.encode(src, "UTF-8").replace("+", "%20");
 	}
 

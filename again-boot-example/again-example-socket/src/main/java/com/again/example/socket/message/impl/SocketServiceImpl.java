@@ -25,34 +25,33 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class SocketServiceImpl implements SocketService {
 
-	private final ChannelRepository channelRepository;
+    private final ChannelRepository channelRepository;
 
-	private final ChannelTimeRepository channelTimeRepository;
+    private final ChannelTimeRepository channelTimeRepository;
 
-	private final static String USER_ID = "userId";
+    private final static String USER_ID = "userId";
 
-	@Override
-	public void addChannel(ChannelHandlerContext ctx, Map json) {
-		Integer userId = (Integer) json.get(USER_ID);
-		channelRepository.put(userId, ctx.channel());
-	}
+    @Override
+    public void addChannel(ChannelHandlerContext ctx, Map json) {
+        Integer userId = (Integer) json.get(USER_ID);
+        channelRepository.put(userId, ctx.channel());
+    }
 
-	@Override
-	public void keepAlive(Map map) {
-		Integer userId = (Integer) map.get(USER_ID);
-		channelTimeRepository.put(userId, DateTimeUtils.get());
-	}
+    @Override
+    public void keepAlive(Map map) {
+        Integer userId = (Integer) map.get(USER_ID);
+        channelTimeRepository.put(userId, DateTimeUtils.get());
+    }
 
-	@Override
-	public void push(Integer userId) {
-		Channel channel = channelRepository.get(userId);
-		SocketPojo pojo = new SocketPojo();
-		pojo.setType(SocketEnum.RISK_NOTICE.getCode());
-		pojo.setMessage(SocketEnum.RISK_NOTICE.getMsg());
-		TextWebSocketFrame tws = new TextWebSocketFrame(JacksonUtils.toJson(pojo));
-		if (channel != null) {
-			channel.writeAndFlush(tws);
-		}
-	}
-
+    @Override
+    public void push(Integer userId) {
+        Channel channel = channelRepository.get(userId);
+        SocketPojo pojo = new SocketPojo();
+        pojo.setType(SocketEnum.RISK_NOTICE.getCode());
+        pojo.setMessage(SocketEnum.RISK_NOTICE.getMsg());
+        TextWebSocketFrame tws = new TextWebSocketFrame(JacksonUtils.toJson(pojo));
+        if (channel != null) {
+            channel.writeAndFlush(tws);
+        }
+    }
 }
