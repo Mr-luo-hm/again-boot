@@ -22,6 +22,7 @@
         <module>again-example-pay</module>
         <module>again-example-logs</module>
         <module>again-example-netty</module>
+        <module>again-example-zipkin</module>
     </modules>
 
 

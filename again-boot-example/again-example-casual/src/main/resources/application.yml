@@ -9,3 +9,11 @@ eureka:
 spring:
   application:
     name: @artifactId@
+  zipkin:
+    base-url: http://localhost:18761 #配置zipkinserver 的地址
+  sleuth:
+    sampler:
+      probability: 1  #采样率 从0.1-1之间,代表数据收集的频率,0.1大约是每十次请求会收集一次
+  rabbitmq:
+    host: 192.168.1.175
+    port: 5672

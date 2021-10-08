@@ -35,4 +35,5 @@ public interface LogSearchService {
 	 * @throws IOException io
 	 */
 	void rolloverWhatsFriend() throws IOException;
+
 }

@@ -1,8 +1,8 @@
 package com.again.boot.security.service.impl;
 
-import com.again.boot.security.entity.SysPermission;
+import com.again.boot.security.model.entity.SysPermission;
 import com.again.boot.security.mapper.SysPermissionMapper;
-import com.again.boot.security.mapper.SysUserMapper;
+import com.again.boot.security.model.vo.PermissionVO;
 import com.again.boot.security.service.SysPermissionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +24,8 @@ public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, S
 	private final SysPermissionMapper sysPermissionMapper;
 
 	@Override
-	public List<SysPermission> selectListByUser(Integer userId) {
-		return sysPermissionMapper.selectListByUser(userId);
+	public List<PermissionVO> findPermissionVOsByRoleCode(String roleCode) {
+		return baseMapper.listPermissionVOsByRoleCode(roleCode);
 	}
 
 }

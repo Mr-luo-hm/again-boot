@@ -1,6 +1,6 @@
 package com.again.boot.web.config;
 
-import com.again.boot.security.entity.SysPermission;
+import com.again.boot.security.model.entity.SysPermission;
 import com.again.boot.security.service.SysPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;

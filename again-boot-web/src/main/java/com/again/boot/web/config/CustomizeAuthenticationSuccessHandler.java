@@ -1,6 +1,6 @@
 package com.again.boot.web.config;
 
-import com.again.boot.security.entity.SysUser;
+import com.again.boot.security.model.entity.SysUser;
 import com.again.boot.security.service.SysUserService;
 import com.again.boot.security.utils.JsonResult;
 import com.again.boot.security.utils.ResultTool;

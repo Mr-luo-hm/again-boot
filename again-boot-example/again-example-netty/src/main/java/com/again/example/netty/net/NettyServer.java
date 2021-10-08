@@ -16,22 +16,22 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class NettyServer {
-    public static void main(String[] args) throws InterruptedException {
-        NioEventLoopGroup eventExecutors = new NioEventLoopGroup();
 
-        ServerBootstrap bootstrap = new ServerBootstrap();
-        bootstrap.group(eventExecutors, new NioEventLoopGroup(5))
-                .channel(NioServerSocketChannel.class)
-                .handler(new LoggingHandler(LogLevel.INFO))
-                .childHandler(new ChannelInitializer<NioSocketChannel>() {
-                    @Override
-                    protected void initChannel(NioSocketChannel ch) throws Exception {
-                        log.info("init...");
-                    }
-                });
+	public static void main(String[] args) throws InterruptedException {
+		NioEventLoopGroup eventExecutors = new NioEventLoopGroup();
 
-        ChannelFuture channelFuture = bootstrap.bind(20005).sync();
-        channelFuture.channel().writeAndFlush("xxxxxxxxxxxxxxxx");
-        log.info("proxy Net Server Started!");
-    }
+		ServerBootstrap bootstrap = new ServerBootstrap();
+		bootstrap.group(eventExecutors, new NioEventLoopGroup(5)).channel(NioServerSocketChannel.class)
+				.handler(new LoggingHandler(LogLevel.INFO)).childHandler(new ChannelInitializer<NioSocketChannel>() {
+					@Override
+					protected void initChannel(NioSocketChannel ch) throws Exception {
+						log.info("init...");
+					}
+				});
+
+		ChannelFuture channelFuture = bootstrap.bind(20005).sync();
+		channelFuture.channel().writeAndFlush("xxxxxxxxxxxxxxxx");
+		log.info("proxy Net Server Started!");
+	}
+
 }

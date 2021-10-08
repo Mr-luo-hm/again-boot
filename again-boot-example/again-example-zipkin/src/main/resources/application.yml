@@ -1,0 +1,10 @@
+server:
+  port: 18761
+spring:
+  application:
+    name: 47zipkin-server
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false

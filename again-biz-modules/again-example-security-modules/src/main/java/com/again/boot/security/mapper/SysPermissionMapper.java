@@ -1,6 +1,7 @@
 package com.again.boot.security.mapper;
 
-import com.again.boot.security.entity.SysPermission;
+import com.again.boot.security.model.entity.SysPermission;
+import com.again.boot.security.model.vo.PermissionVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -11,6 +12,11 @@ import java.util.List;
  */
 public interface SysPermissionMapper extends BaseMapper<SysPermission> {
 
-	List<SysPermission> selectListByUser(Integer userId);
+	/**
+	 * 通过角色ID查询权限
+	 * @param roleCode 角色ID
+	 * @return
+	 */
+	List<PermissionVO> listPermissionVOsByRoleCode(String roleCode);
 
 }

@@ -1,4 +1,4 @@
-package com.again.boot.security.entity;
+package com.again.boot.security.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;

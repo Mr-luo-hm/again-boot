@@ -10,15 +10,17 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  * @description:
  */
 public class VirtualClientMessageHandler extends SimpleChannelInboundHandler<NioSocketChannel> {
-    @Override
-    protected void channelRead0(ChannelHandlerContext ctx, NioSocketChannel msg) throws Exception {
 
-    }
+	@Override
+	protected void channelRead0(ChannelHandlerContext ctx, NioSocketChannel msg) throws Exception {
 
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        Channel channel = ctx.channel();
-        channel.writeAndFlush("xxxxxxxxxxxxxxxxxxxxxxxxxx");
-        super.channelActive(ctx);
-    }
+	}
+
+	@Override
+	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+		Channel channel = ctx.channel();
+		channel.writeAndFlush("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+		super.channelActive(ctx);
+	}
+
 }

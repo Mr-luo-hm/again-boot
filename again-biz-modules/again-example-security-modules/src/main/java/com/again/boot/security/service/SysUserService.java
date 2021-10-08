@@ -1,6 +1,7 @@
 package com.again.boot.security.service;
 
-import com.again.boot.security.entity.SysUser;
+import com.again.boot.security.model.dto.UserInfoDTO;
+import com.again.boot.security.model.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -10,5 +11,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface SysUserService extends IService<SysUser> {
 
 	SysUser selectByName(String userName);
+
+	/**
+	 * 获取用户详情信息
+	 * @param user SysUser
+	 * @return UserInfoDTO
+	 */
+	UserInfoDTO findUserInfo(SysUser user);
 
 }

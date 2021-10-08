@@ -1,7 +1,9 @@
 package com.again.boot.security.service;
 
-import com.again.boot.security.entity.SysPermission;
+import com.again.boot.security.model.entity.SysPermission;
+import com.again.boot.security.model.vo.PermissionVO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import sun.nio.ch.ThreadPool;
 
 import java.util.List;
 
@@ -11,6 +13,11 @@ import java.util.List;
  */
 public interface SysPermissionService extends IService<SysPermission> {
 
-	List<SysPermission> selectListByUser(Integer userId);
+	/**
+	 * 通过角色编号查询URL 权限
+	 * @param roleCode 角色Code
+	 * @return 菜单列表
+	 */
+	List<PermissionVO> findPermissionVOsByRoleCode(String roleCode);
 
 }

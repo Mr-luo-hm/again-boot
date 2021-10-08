@@ -44,19 +44,23 @@ public class LogSearchServiceImpl implements LogSearchService {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public void updateIndexReindexWhatsFriend(String oldIndex, String newIndex, Integer size) throws IOException {
 		// 7.x
-//		ReindexRequest request = new ReindexRequest();
-//		request.setSlices(5);// 当slices的数量等于索引中的分片数量时，查询性能最高效 slices大小大于分片数，非但不会提升效率，反而会增加开销
-//		request.setSourceBatchSize(size);
-//		request.setSourceIndices(oldIndex);
-//		BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
-//		request.setSourceQuery(queryBuilder);
-//		request.setDestIndex(newIndex);
-//		TaskSubmissionResponse task = restHighLevelClient.submitReindexTask(request, RequestOptions.DEFAULT);
-//		System.out.println(task.getTask());
+		// ReindexRequest request = new ReindexRequest();
+		// request.setSlices(5);// 当slices的数量等于索引中的分片数量时，查询性能最高效
+		// slices大小大于分片数，非但不会提升效率，反而会增加开销
+		// request.setSourceBatchSize(size);
+		// request.setSourceIndices(oldIndex);
+		// BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+		// request.setSourceQuery(queryBuilder);
+		// request.setDestIndex(newIndex);
+		// TaskSubmissionResponse task = restHighLevelClient.submitReindexTask(request,
+		// RequestOptions.DEFAULT);
+		// System.out.println(task.getTask());
 	}
+
 	@Override
 	public void addIndexWhatsFriendAlias(String index) throws IOException {
 		// 创建索引
@@ -84,4 +88,5 @@ public class LogSearchServiceImpl implements LogSearchService {
 		createIndexRequest.mapping("", XContentType.JSON);
 		restHighLevelClient.indices().rollover(rolloverIndex, RequestOptions.DEFAULT);
 	}
+
 }

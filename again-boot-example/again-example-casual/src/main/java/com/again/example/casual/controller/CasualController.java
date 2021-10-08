@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author create by 罗英杰 on 2021/9/10
  * @description:
  */
-@RequestMapping
+@RequestMapping("foo")
 @RestController
 public class CasualController {
 

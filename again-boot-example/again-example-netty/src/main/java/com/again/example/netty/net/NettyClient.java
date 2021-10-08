@@ -19,23 +19,26 @@ import org.springframework.stereotype.Component;
 @Data
 
 public class NettyClient {
-    public final static int serverPort = 20005;
 
-    public final static String serverIp = "127.0.0.1";
+	public final static int serverPort = 20005;
 
-    public static void main(String[] args) throws InterruptedException {
-        NioEventLoopGroup eventExecutors = new NioEventLoopGroup();
-        Bootstrap bootstrap = new Bootstrap();
-        bootstrap.group(eventExecutors).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE, true)
-                .handler(new ChannelInitializer<NioSocketChannel>() {
-                    @Override
-                    protected void initChannel(NioSocketChannel ch) throws Exception {
-                        ChannelPipeline pipeline = ch.pipeline();
-                        pipeline.addLast(new NioEventLoopGroup(5), "localMessageClientHandler", new VirtualClientMessageHandler());
-                        System.out.println("NettyClient starter...");
-                    }
-                });
-        bootstrap.connect(serverIp, serverPort).sync();
+	public final static String serverIp = "127.0.0.1";
 
-    }
+	public static void main(String[] args) throws InterruptedException {
+		NioEventLoopGroup eventExecutors = new NioEventLoopGroup();
+		Bootstrap bootstrap = new Bootstrap();
+		bootstrap.group(eventExecutors).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE, true)
+				.handler(new ChannelInitializer<NioSocketChannel>() {
+					@Override
+					protected void initChannel(NioSocketChannel ch) throws Exception {
+						ChannelPipeline pipeline = ch.pipeline();
+						pipeline.addLast(new NioEventLoopGroup(5), "localMessageClientHandler",
+								new VirtualClientMessageHandler());
+						System.out.println("NettyClient starter...");
+					}
+				});
+		bootstrap.connect(serverIp, serverPort).sync();
+
+	}
+
 }

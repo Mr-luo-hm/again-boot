@@ -1,6 +1,6 @@
 package com.again.boot.security.mapper;
 
-import com.again.boot.security.entity.SysUser;
+import com.again.boot.security.model.entity.SysUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
