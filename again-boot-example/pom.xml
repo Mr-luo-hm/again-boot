@@ -23,6 +23,7 @@
         <module>again-example-logs</module>
         <module>again-example-netty</module>
         <module>again-example-zipkin</module>
+        <module>again-example-authcenter</module>
     </modules>
 
 

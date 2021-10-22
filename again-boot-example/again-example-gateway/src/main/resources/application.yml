@@ -39,6 +39,12 @@ spring:
           uri: lb://again-example-pay
           predicates:
             - Path=/pay/**
+        - id: again-example-authcenter #授权模块
+          uri: lb://again-example-authcenter
+          predicates:
+            - Path=/login/**
+          filters:
+            - IgnoreTestGlobalFilter  #在本路由启用跳过全局过滤器
       globalcors: #统一配置跨域请求
         cors-configurations:
           '[/**]':
@@ -60,8 +66,8 @@ eureka:
       defaultZone: http://localhost:20000/eureka/
 logging:
   level:
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.http.server.reactive: DEBUG
-    org.springframework.web.reactive: DEBUG
-    reactor.ipc.netty: DEBUG
+    org.springframework.cloud.gateway: INFO
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+    reactor.ipc.netty: INFO
 
