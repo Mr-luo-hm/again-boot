@@ -38,12 +38,12 @@ public class GateWayStartApplication {
 	}
 
 	/**
-	 * 根据userid进行限流
+	 * 根据secret进行限流
 	 * @return KeyResolver
 	 */
 	@Bean
 	KeyResolver userKeyResolver() {
-		return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getQueryParams().getFirst("user")));
+		return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getHeaders().getFirst("secret")));
 	}
 
 	/**
@@ -64,5 +64,6 @@ public class GateWayStartApplication {
 	KeyResolver apiKeyResolver() {
 		return exchange -> Mono.just(exchange.getRequest().getPath().value());
 	}
+
 
 }

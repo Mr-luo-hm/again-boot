@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author create by 罗英杰 on 2021/9/15
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 @Data
 public class LogBean {
-
+	private Integer id;
 	/**
 	 * 请求url
 	 */
@@ -60,5 +61,7 @@ public class LogBean {
 	private int errorCode;
 
 	private String method;
+
+	private List<LogBean> beans;
 
 }
