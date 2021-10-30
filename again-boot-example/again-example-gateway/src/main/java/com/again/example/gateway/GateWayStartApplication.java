@@ -65,5 +65,4 @@ public class GateWayStartApplication {
 		return exchange -> Mono.just(exchange.getRequest().getPath().value());
 	}
 
-
 }

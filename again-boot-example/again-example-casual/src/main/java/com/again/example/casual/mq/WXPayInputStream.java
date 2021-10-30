@@ -10,6 +10,6 @@ import org.springframework.messaging.SubscribableChannel;
 public interface WXPayInputStream {
 
 	@Input("paysuccessexchange")
-	SubscribableChannel subscribable_channel();
+	SubscribableChannel subscribableChannel();
 
 }

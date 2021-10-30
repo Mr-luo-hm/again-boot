@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,17 +25,19 @@ public class CasualController {
 	}
 
 	@GetMapping("/menu")
-	public List response(){
+	public List response() {
 		ArrayList<LogBean> list = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			LogBean logBean = new LogBean();
 			logBean.setId(i);
-			logBean.setMethod("菜单"+i);
+			logBean.setMethod("菜单" + i);
+			HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+
 			ArrayList<LogBean> logBeans = new ArrayList<>();
 			for (int i1 = 0; i1 < 3; i1++) {
 				LogBean bean = new LogBean();
 				bean.setId(i1);
-				bean.setMethod("菜单"+i1);
+				bean.setMethod("菜单" + i1);
 				logBeans.add(bean);
 			}
 			logBean.setBeans(logBeans);
@@ -43,4 +46,5 @@ public class CasualController {
 		}
 		return list;
 	}
+
 }

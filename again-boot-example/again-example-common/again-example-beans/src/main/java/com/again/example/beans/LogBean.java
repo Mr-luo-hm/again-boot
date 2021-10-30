@@ -13,7 +13,9 @@ import java.util.List;
  */
 @Data
 public class LogBean {
+
 	private Integer id;
+
 	/**
 	 * 请求url
 	 */

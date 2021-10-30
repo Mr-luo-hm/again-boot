@@ -24,6 +24,8 @@
         <module>again-example-netty</module>
         <module>again-example-zipkin</module>
         <module>again-example-authcenter</module>
+        <module>again-example-zookeeper</module>
+        <module>again-example-zookeeper-client</module>
     </modules>
 
 

@@ -1,0 +1,15 @@
+server:
+  port: 20001
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @profiles.active@  # 当前激活配置，默认dev
+  cloud:
+    zookeeper:
+      connect-string: 192.168.1.4:2181
+      discovery:
+        register: true
+        enabled: true
+        instance-id: 1
+        root: /zookeeper-server
