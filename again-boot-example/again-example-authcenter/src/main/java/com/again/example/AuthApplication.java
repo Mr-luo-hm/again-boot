@@ -30,12 +30,13 @@ public class AuthApplication {
 		// * 表示对所有的地址都可以访问
 		corsConfiguration.addAllowedOrigin("*");
 		// 表示只允许http://localhost:8080地址的访问（重点哦！！！！）
-		// corsConfiguration.addAllowedOrigin("http://localhost:8080");
+		// corsConfiguration.addAllowedOrigin("http://localhost:8001");
 
 		// 跨域的请求头
 		corsConfiguration.addAllowedHeader("*"); // 2
 		// 跨域的请求方法
 		corsConfiguration.addAllowedMethod("*"); // 3
+
 		// 加上了这一句，大致意思是可以携带 cookie
 		// 最终的结果是可以 在跨域请求的时候获取同一个 session
 		corsConfiguration.setAllowCredentials(true);

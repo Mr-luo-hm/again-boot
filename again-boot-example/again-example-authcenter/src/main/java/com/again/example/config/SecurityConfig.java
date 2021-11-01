@@ -1,27 +1,39 @@
 package com.again.example.config;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.again.example.config.util.JwtTokenFilter;
+import com.again.example.config.util.JwtTokenUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.time.Instant;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * @author create by 罗英杰 on 2021/10/20
  * @description:
  */
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	CustomizeSessionInformationExpiredStrategy sessionInformationExpiredStrategy;
+
+	@Autowired
+	JwtTokenUtil jwtTokenUtil;
 
 	/**
 	 * 查询数据库的方法,要求我们返回一个用户对象
@@ -47,31 +59,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().antMatchers("/login")
+				.permitAll().anyRequest().authenticated();
+		http.logout().logoutSuccessHandler((httpServletRequest, httpServletResponse, authentication) -> {
+			httpServletResponse.setCharacterEncoding(String.valueOf(Charset.defaultCharset()));
+			httpServletResponse.getWriter().write("退出成功");
+		});
 
-		http.authorizeRequests()// 验证所有的请求
-				.anyRequest().authenticated()// 没有单独指定的地址只需要登录就可以
-				.and()//
-				.formLogin()// 自定义登录框
-				.loginProcessingUrl("/login")// Spring Security会拦截这个地址,这个地址会交给Security 来处理
-				.usernameParameter("username")// 登录表单中用户名的参数名叫什么,Security会获取这个参数然后帮我们查询用户
-				.passwordParameter("password")// 登录中密码的参数名
-				.successHandler((httpServletRequest, httpServletResponse, authentication) -> {
-					Instant instant = Instant.now();// 现在的时间,代码执行时候的时间
-					String jwtString = Jwts.builder().signWith(SignatureAlgorithm.HS256, "secret".getBytes())// 设置签名的方式和盐
-							.setIssuedAt(Date.from(instant))// 指定令牌生效的时间,也就是说可以不是生成的时候立刻生效
-							.setExpiration(Date.from(instant.plusSeconds(12000))).compact();// 什么时候过期,以instant的时间为基准,向后延迟3600秒,注意这个东西会有时区问题,发令牌的服务器和校验的服务器必须是用相同的时区或者要进行转换
-					// 返回给客户端,我们约定是通过响应头返回
-
-					httpServletResponse.addHeader("secret", jwtString);
-				})//
-				.permitAll()// 放行登录相关的信息,就是上面的配置
-				.and()//
-				.logout()//
-				.logoutSuccessHandler((httpServletRequest, httpServletResponse, authentication) -> httpServletResponse
-						.getWriter().write("退出成功"))
-				.permitAll()//
-				.and().httpBasic().and().csrf().disable();
-
+		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+		http.headers().cacheControl();
 	}
 
 	/**
@@ -81,6 +78,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public JwtTokenFilter authenticationTokenFilterBean() throws Exception {
+		return new JwtTokenFilter();
+	}
+
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
 	}
 
 }

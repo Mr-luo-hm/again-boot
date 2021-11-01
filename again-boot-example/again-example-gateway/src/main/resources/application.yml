@@ -42,7 +42,7 @@ spring:
         - id: again-example-authcenter #授权模块
           uri: lb://again-example-authcenter
           predicates:
-            - Path=/login/**
+            - Path=/auth/**
           filters:
             - IgnoreTestGlobalFilter  #在本路由启用跳过全局过滤器
       globalcors: #统一配置跨域请求

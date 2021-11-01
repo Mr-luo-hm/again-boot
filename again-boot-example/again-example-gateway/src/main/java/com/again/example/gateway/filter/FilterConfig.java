@@ -40,7 +40,8 @@ public class FilterConfig {
 
 		@Override
 		public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-			log.info("AFilter前置逻辑");
+			String url = exchange.getRequest().getPath().pathWithinApplication().value();
+			log.info("请求URL:" + url);
 			return chain.filter(exchange).then(Mono.fromRunnable(() -> {
 				log.info("AFilter后置逻辑");
 			}));

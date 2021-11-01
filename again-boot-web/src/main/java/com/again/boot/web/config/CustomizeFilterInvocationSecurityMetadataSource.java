@@ -37,7 +37,7 @@ public class CustomizeFilterInvocationSecurityMetadataSource implements FilterIn
 		}
 		String[] attributes = new String[permissionList.size()];
 		for (int i = 0; i < permissionList.size(); i++) {
-			attributes[i] = permissionList.get(i).getPermissionCode();
+			attributes[i] = permissionList.get(i).getComponent();
 		}
 		return SecurityConfig.createList(attributes);
 	}
