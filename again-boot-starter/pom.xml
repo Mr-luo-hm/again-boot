@@ -16,5 +16,7 @@
         <module>again-boot-starter-kafka</module>
         <module>again-boot-starter-storage</module>
         <module>again-boot-starter-redis</module>
+        <module>again-boot-starter-pv</module>
+        <module>again-boot-starter-desensitized</module>
     </modules>
 </project>

@@ -1,6 +1,6 @@
 package com.again.example.casual.mq;
 
-import org.springframework.cloud.stream.annotation.StreamListener;
+// import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WxPayListener {
 
-	@StreamListener("paysuccessexchange")
+	// @StreamListener("paysuccessexchange")
 	public void onMessage(String oid) {
 		System.out.println(oid);
 		// 业务处理

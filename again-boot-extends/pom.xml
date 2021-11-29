@@ -14,6 +14,7 @@
     <modules>
         <module>again-boot-mybatis-plus</module>
         <module>again-boot-mybatis-plus-mysql</module>
+        <module>again-boot-wipe-data</module>
     </modules>
 
 

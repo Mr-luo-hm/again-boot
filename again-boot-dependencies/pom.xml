@@ -54,6 +54,11 @@
                 <artifactId>again-boot-starter-redis</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.again</groupId>
+                <artifactId>again-boot-starter-desensitized</artifactId>
+                <version>${revision}</version>
+            </dependency>
            <!-- extends-->
             <dependency>
                 <groupId>com.again</groupId>
@@ -65,7 +70,11 @@
                 <artifactId>again-boot-mybatis-plus-mysql</artifactId>
                 <version>${revision}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.again</groupId>
+                <artifactId>again-boot-wipe-data</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <dependency>
                 <groupId>cn.hutool</groupId>

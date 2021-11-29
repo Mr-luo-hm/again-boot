@@ -14,6 +14,6 @@ spring:
   sleuth:
     sampler:
       probability: 1  #采样率 从0.1-1之间,代表数据收集的频率,0.1大约是每十次请求会收集一次
-  rabbitmq:
-    host: 192.168.1.123
-    port: 5672
+  #rabbitmq:
+  #  host: 192.168.1.123
+  #  port: 5672

@@ -34,10 +34,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
@@ -49,6 +49,14 @@
         <dependency>
             <groupId>com.again</groupId>
             <artifactId>again-example-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.again</groupId>
+            <artifactId>again-boot-wipe-data</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.again</groupId>
+            <artifactId>again-boot-starter-desensitized</artifactId>
         </dependency>
         <!--
         sleuth 与 zipkin 整合的依赖

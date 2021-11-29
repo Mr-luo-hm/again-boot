@@ -1,5 +1,9 @@
 package com.again.example.beans;
 
+import com.again.boot.starter.desensitized.annotation.Desensitized;
+import com.again.boot.starter.desensitized.enumerate.SensitiveTypeEnum;
+import com.again.extend.wipe.data.annotation.WipeData;
+import com.again.extend.wipe.data.constant.Constants;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,6 +24,9 @@ public class LogBean {
 	 * 请求url
 	 */
 	private String url;
+
+	@Desensitized(type = SensitiveTypeEnum.MOBILE_PHONE)
+	private String phoneNumber;
 
 	/**
 	 * 代表是哪个网关处理的请求
@@ -62,6 +69,7 @@ public class LogBean {
 	 */
 	private int errorCode;
 
+	@WipeData(value = Constants.PHONE_NO)
 	private String method;
 
 	private List<LogBean> beans;

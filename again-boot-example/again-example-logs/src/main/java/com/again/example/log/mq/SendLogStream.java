@@ -13,4 +13,10 @@ public interface SendLogStream {
 	@Input("logexchange")
 	MessageChannel messageChannel();
 
+	public static void main(String[] args) {
+		String str = "wqewwqeqw@qq.com";
+		String refex = "/(^\\s*)|(\\s*$)/g,\"@qq.com\"";
+		System.out.println(str.replaceAll("@qq.com", ""));
+	}
+
 }
