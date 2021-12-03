@@ -1,6 +1,7 @@
 package com.again.example.casual.controller;
 
 import com.again.boot.starter.desensitized.annotation.Desensitized;
+import com.again.boot.starter.desensitized.annotation.FieldSuffix;
 import com.again.boot.starter.desensitized.enumerate.SensitiveTypeEnum;
 import com.again.boot.starter.desensitized.utils.R;
 import com.again.example.beans.LogBean;
@@ -53,13 +54,14 @@ public class CasualController {
 
 	@GetMapping("/menu2")
 	@Desensitized(targetClass = LogBean.class)
+	@FieldSuffix(targetClass = LogBean.class,value = {"@c.us"})
 	public R<?> test() {
 		ArrayList<LogBean> list = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			LogBean logBean = new LogBean();
 			logBean.setId(i);
 			logBean.setMethod("1258693691" + i);
-			logBean.setPhoneNumber("18730334344");
+			logBean.setPhoneNumber("18730334344@c.us");
 			/*
 			 * HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
 			 *

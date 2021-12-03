@@ -1,6 +1,7 @@
 package com.again.example.beans;
 
 import com.again.boot.starter.desensitized.annotation.Desensitized;
+import com.again.boot.starter.desensitized.annotation.FieldSuffix;
 import com.again.boot.starter.desensitized.enumerate.SensitiveTypeEnum;
 import com.again.extend.wipe.data.annotation.WipeData;
 import com.again.extend.wipe.data.constant.Constants;
@@ -26,6 +27,7 @@ public class LogBean {
 	private String url;
 
 	@Desensitized(type = SensitiveTypeEnum.MOBILE_PHONE)
+	@FieldSuffix
 	private String phoneNumber;
 
 	/**

@@ -7,7 +7,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -17,10 +16,11 @@ import java.util.Collection;
  * @description:
  */
 @Aspect
-@Component
-public abstract class DesensitizedHandler {
+public class DesensitizedHandler {
 
-	public abstract Object vestIn(Object o);
+	public Object vestIn(Object o){
+		return o;
+	}
 
 	@AfterReturning(returning = "data",
 			pointcut = "@annotation(com.again.boot.starter.desensitized.annotation.Desensitized)")

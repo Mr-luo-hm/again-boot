@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 // @EnableBinding({ WXPayInputStream.class })
 @RibbonClient("again-example-casual")
-@ComponentScan(value = { "com.again.*" })
+@ComponentScan(value = { "com.again.example.*" })
 // @EnableAspectJAutoProxy
 public class CasualStartApplication {
 
