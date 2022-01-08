@@ -76,4 +76,16 @@ public class LogBean {
 
 	private List<LogBean> beans;
 
+	public static void main(String args[]) {
+		long num = 99;
+		long pow = 365;
+		System.out.print(power(num , pow));
+	}
+	public static long power(long a , long b) {
+		long power = 1;
+		for (long c = 0; c < b; c++)
+			power *= a;
+		return power;
+	}
+
 }

@@ -2,7 +2,6 @@ package com.again.example.casual.config;
 
 import com.again.boot.starter.desensitized.handler.DesensitizedHandler;
 import com.again.boot.starter.desensitized.utils.R;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**

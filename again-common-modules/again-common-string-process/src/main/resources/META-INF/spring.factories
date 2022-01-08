@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.again.common.handler.BaseDesensitizedHandler,\
+ com.again.common.handler.BaseFieldSuffixHandler

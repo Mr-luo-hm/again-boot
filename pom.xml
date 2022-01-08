@@ -14,6 +14,7 @@
         <module>again-boot-example</module>
         <module>again-biz-modules</module>
         <module>again-boot-web</module>
+        <module>again-common-modules</module>
     </modules>
 
     <packaging>pom</packaging>
