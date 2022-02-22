@@ -20,27 +20,15 @@ public class SysUser extends Model<SysUser> {
 
 	private Integer id;
 
-	private String account;
-
-	private String userName;
+	private String username;
 
 	private String password;
 
 	private LocalDateTime lastLoginTime;
 
-	private Boolean enabled;
-
-	private Boolean notExpired;
-
-	private Boolean accountNotLocked;
-
-	private Boolean credentialsNotExpired;
-
 	private LocalDateTime createTime;
 
 	private LocalDateTime updateTime;
-
-	private Boolean accountNotExpired;
 
 	private Integer createUser;
 

@@ -54,7 +54,7 @@ public class CasualController {
 
 	@GetMapping("/menu2")
 	@Desensitized(targetClass = LogBean.class)
-	@FieldSuffix(targetClass = LogBean.class,value = {"@c.us"})
+	@FieldSuffix(targetClass = LogBean.class, value = { "@c.us" })
 	public R<?> test() {
 		ArrayList<LogBean> list = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {

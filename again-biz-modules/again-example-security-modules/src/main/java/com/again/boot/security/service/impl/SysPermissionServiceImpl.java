@@ -25,7 +25,7 @@ public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, S
 
 	@Override
 	public List<PermissionVO> findPermissionVOsByRoleCode(String roleCode) {
-		return baseMapper.listPermissionVOsByRoleCode(roleCode);
+		return sysPermissionMapper.listPermissionVOsByRoleCode(roleCode);
 	}
 
 }

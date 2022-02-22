@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Bean;
 @EnableConfigurationProperties({ ElasticSearchProperties.class })
 public class ElasticSearchAutoConfiguration {
 
-	private final static String TYPE = "http";
+	private static final String TYPE = "http";
 
 	@Bean
 	private RestHighLevelClient getClient(ElasticSearchProperties properties) {

@@ -1,7 +1,5 @@
 package com.again.common.annotation;
 
-
-
 import com.again.common.enumerate.SensitiveTypeEnum;
 
 import java.lang.annotation.*;

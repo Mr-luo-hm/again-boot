@@ -18,7 +18,7 @@ import java.util.Collection;
 @Aspect
 public class DesensitizedHandler {
 
-	public Object vestIn(Object o){
+	public Object vestIn(Object o) {
 		return o;
 	}
 

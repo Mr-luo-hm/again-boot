@@ -63,9 +63,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		// 设置权限列表（permission）
 		Set<String> permissions = new HashSet<>();
 		roles.forEach(code -> {
-			List<String> permissionList = sysPermissionService.findPermissionVOsByRoleCode(code).stream()
+			Set<String> permissionList = sysPermissionService.findPermissionVOsByRoleCode(code).stream()
 					.filter(sysPermission -> StrUtil.isNotEmpty(sysPermission.getCode())).map(PermissionVO::getCode)
-					.collect(Collectors.toList());
+					.collect(Collectors.toSet());
 			permissions.addAll(permissionList);
 		});
 		userInfoDTO.setPermissions(new ArrayList<>(permissions));

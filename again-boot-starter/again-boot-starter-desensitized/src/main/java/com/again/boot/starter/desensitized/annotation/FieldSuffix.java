@@ -11,8 +11,11 @@ import java.lang.annotation.*;
 @Inherited
 @Documented
 public @interface FieldSuffix {
-    // 被脱敏的class
-    Class<?> targetClass() default Void.class;
-    // 脱敏类型(规则)
-    String[] value() default "";
+
+	// 被脱敏的class
+	Class<?> targetClass() default Void.class;
+
+	// 脱敏类型(规则)
+	String[] value() default "";
+
 }

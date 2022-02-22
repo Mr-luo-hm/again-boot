@@ -1,6 +1,5 @@
 package com.again.common.handler;
 
-
 import com.again.common.annotation.Desensitized;
 import com.again.common.enumerate.SensitiveTypeEnum;
 import com.again.common.utils.DesensitizedUtils;
@@ -55,7 +54,7 @@ public class BaseDesensitizedHandler {
 		}
 	}
 
-	@AfterReturning(returning = "data", pointcut = "@annotation(com.moppo.common.desensitized.annotation.Desensitized)")
+	@AfterReturning(returning = "data", pointcut = "@annotation(com.again.common.annotation.Desensitized)")
 	public Object around(JoinPoint joinPoint, Object data) throws Throwable {
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		// Gets the label of the method

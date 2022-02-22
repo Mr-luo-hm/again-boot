@@ -15,28 +15,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WebLog {
 
-    private String threadId;
+	private String threadId;
 
-    private String threadName;
+	private String threadName;
 
-    private String ip;
+	private String ip;
 
-    private String url;
+	private String url;
 
-    private String httpMethod;
+	private String httpMethod;
 
-    private String classMethod;
+	private String classMethod;
 
-    private Object requestParams;
+	private Object requestParams;
 
-    private Object result;
+	private Object result;
 
-    private Long timeCost;
+	private Long timeCost;
 
-    private String os;
+	private String os;
 
-    private String browser;
+	private String browser;
 
-    private String userAgent;
+	private String userAgent;
 
 }

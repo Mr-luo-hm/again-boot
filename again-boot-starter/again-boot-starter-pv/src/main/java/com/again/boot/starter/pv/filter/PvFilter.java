@@ -37,7 +37,7 @@ public class PvFilter extends OncePerRequestFilter {
 	/**
 	 * 针对需忽略的Url的规则匹配器
 	 */
-	private final static AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();
+	private static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

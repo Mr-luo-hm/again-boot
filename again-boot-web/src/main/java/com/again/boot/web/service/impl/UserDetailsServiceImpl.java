@@ -1,6 +1,6 @@
 package com.again.boot.web.service.impl;
 
-import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.again.boot.security.constants.UserResourceConstant;
 import com.again.boot.security.model.dto.UserInfoDTO;
 import com.again.boot.security.model.entity.SysRole;
@@ -8,7 +8,9 @@ import com.again.boot.security.model.entity.SysUser;
 import com.again.boot.security.service.SysPermissionService;
 import com.again.boot.security.service.SysUserRoleService;
 import com.again.boot.security.service.SysUserService;
+import com.again.boot.security.utils.SysUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,21 +30,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private SysUserService sysUserService;
 
-	@Autowired
-	private SysPermissionService sysPermissionService;
-
-	@Autowired
-	private SysUserRoleService sysUserRoleService;
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		if (username == null || "".equals(username)) {
-			throw new RuntimeException("用户不能为空");
+			throw new InternalAuthenticationServiceException("用户不能为空");
 		}
 		// 根据用户名查询用户
 		SysUser sysUser = sysUserService.selectByName(username);
 		if (sysUser == null) {
-			throw new RuntimeException("用户不存在");
+			throw new InternalAuthenticationServiceException("用户不存在");
 		}
 		UserInfoDTO userInfoDTO = sysUserService.findUserInfo(sysUser);
 		return getUserDetailsByUserInfo(userInfoDTO);
@@ -59,9 +55,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		SysUser sysUser = userInfoDTO.getSysUser();
 		List<String> roles = userInfoDTO.getRoles();
 		List<String> permissions = userInfoDTO.getPermissions();
-
 		Set<String> dbAuthsSet = new HashSet<>();
-		if (CollectionUtil.isNotEmpty(roles)) {
+		if (CollUtil.isNotEmpty(roles)) {
 			// 获取角色
 			dbAuthsSet.addAll(roles);
 			// 获取资源
@@ -75,23 +70,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Map<String, Collection<?>> userResources = new HashMap<>();
 		userResources.put(UserResourceConstant.RESOURCE_ROLE, roles);
 		userResources.put(UserResourceConstant.RESOURCE_PERMISSION, permissions);
-
-		List<SysRole> userRoles = sysUserRoleService.getRoles(sysUser.getId());
-		SysRole userRole = userRoles.stream().min(Comparator.comparing(SysRole::getScopeType)).get();
-		List<Integer> userIds = new ArrayList<>();
-
-		// userResources.put(UserResourceConstant.RESOURCE_ORGANIZATION, userIds);
-		// userResources = userInfoCoordinator.coordinateResource(userResources, sysUser);
-		//
-		// // 用户额外属性
-		// Map<String, Object> userAttributes = new HashMap<>(12);
-		// userAttributes.put(UserResourceConstant.RESOURCE_DATA_SCOPE,
-		// userRole.getScopeType());
-		// userAttributes = userInfoCoordinator.coordinateAttribute(userAttributes,
-		// sysUser);
-
-		// new SysUserDetails(sysUser, authorities, userResources, userAttributes);
-		return null;
+		Map<String, Object> userAttributes = new HashMap<>(12);
+		return new SysUserDetails(sysUser, authorities, userResources, userAttributes);
 	}
 
 }

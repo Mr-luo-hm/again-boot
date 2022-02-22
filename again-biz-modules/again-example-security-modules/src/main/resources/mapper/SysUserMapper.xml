@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.again.boot.security.mapper.SysUserMapper">
    <select id="selectByName" resultType="com.again.boot.security.model.entity.SysUser">
-       select * from sys_user where account = #{userName};
+       select * from sys_user where username = #{userName};
    </select>
 </mapper>
