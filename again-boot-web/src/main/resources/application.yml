@@ -8,4 +8,4 @@ spring:
     username: root
     password: root
 server:
-  port: 20000
+  port: 20001
