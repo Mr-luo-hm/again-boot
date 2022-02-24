@@ -2,15 +2,14 @@ package com.again.boot.web.controller;
 
 import com.again.boot.security.model.vo.PermissionVO;
 import com.again.boot.security.service.SysPermissionService;
-import com.again.boot.security.utils.SysUserDetails;
 import com.baomidou.mybatisplus.extension.api.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -28,11 +27,9 @@ public class MenuController {
 	private final SysPermissionService sysPermissionService;
 
 	@GetMapping(value = "/")
-	@ApiOperation("充值")
-	public R<List<PermissionVO>> permissionMenu() {
-		SysUserDetails userDetails = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal();
-		return R.ok(sysPermissionService.findPermissionVOsByRoleCode(""));
+	@ApiOperation("菜单权限")
+	public R<List<PermissionVO>> permissionMenu(String[] roles) {
+		return R.ok(sysPermissionService.findPermissionVOsByRoleCode("ROLE_ADMIN"));
 	}
 
 }

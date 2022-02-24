@@ -1,5 +1,6 @@
 package com.again.boot.web.config;
 
+import com.again.boot.security.constants.UserResourceConstant;
 import com.again.boot.security.service.SysUserService;
 import com.again.boot.security.utils.ResultTool;
 import com.again.boot.security.utils.SysUserDetails;
@@ -32,6 +33,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 	public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
 			Authentication authentication) throws IOException {
 		// 更新用户表上次登录时间、更新人、更新时间等字段
+
 		SysUserDetails userDetails = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 		// 现在的时间,代码执行时候的时间
@@ -48,6 +50,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 				// 返回给客户端,我们约定是通过响应头返回
 				.setExpiration(Date.from(instant.plusSeconds(12000))).compact();
 		httpServletResponse.addHeader("Authorization", jwtString);
+		httpServletResponse.addHeader("ROLE",JSON.toJSONString(userDetails.getUserResources().get(UserResourceConstant.RESOURCE_ROLE)));
 		httpServletResponse.getWriter().write(JSON.toJSONString(ResultTool.success()));
 	}
 
